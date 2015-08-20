@@ -1,17 +1,16 @@
 <?php namespace App\Modx;
 
-use App\Books;
 
-trait BooksTrait {
+trait PageTrait {
 
     /**
      * Boot the scope.
      *
      * @return void
      */
-    public static function bootBooksTrait()
+    public static function bootPageTrait()
     {
-        static::addGlobalScope(new BooksScope());
+        static::addGlobalScope(new PageScope());
     }
 
     /**
@@ -21,7 +20,22 @@ trait BooksTrait {
      */
     public function getParentColumn()
     {
-        return defined('static::PARENT_COLUMN') ? static::PARENT_COLUMN : 'parent';
+        return defined('static::PARENT_COLUMN') ? static::PARENT_COLUMN : 'template';
+    }
+
+
+    /**
+     * @return int ID of the MODX template
+     * @throws \Exception if there is no MODX_TEMPLATE const in the model
+     */
+    public function getParentColumnValue()
+    {
+        if(defined('static::MODX_TEMPLATE'))
+        {
+          return static::MODX_TEMPLATE;
+        } else {
+            throw new \Exception('No MODX Template ID constant found in Model');
+        }
     }
 
     /**
@@ -41,6 +55,6 @@ trait BooksTrait {
      */
     public static function withDrafts()
     {
-        return with(new static)->newQueryWithoutScope(new BooksScope());
+        return with(new static)->newQueryWithoutScope(new PageScope());
     }
 }

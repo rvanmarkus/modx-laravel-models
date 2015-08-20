@@ -1,19 +1,7 @@
 <?php
 namespace App;
-use App\Modx\ModxContentModel;
 
-class Books extends ModxContentModel{
-    use Modx\BooksTrait;
+class Books extends PageModel{
+    const MODX_TEMPLATE = 13;
 
-    public function scopePublished($query){
-        return $query->where('published','!=',0);
-    }
-
-    public function scopeNotDeleted($query){
-        return $query->where('deleted','!=',1);
-    }
-
-    public function scopeSortPublished($query){
-        return $query->orderBy('publishedon','desc');
-    }
 }

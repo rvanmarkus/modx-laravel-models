@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ScopeInterface;
 
-class BooksScope implements ScopeInterface {
+class PageScope implements ScopeInterface {
 
     /**
      * Apply scope on the query.
@@ -19,7 +19,9 @@ class BooksScope implements ScopeInterface {
     {
         $column = $model->getQualifiedParentColumn();
 
-        $builder->where($column, '=', 232);
+        $value = $model->getParentColumnValue();
+
+        $builder->where($column, '=', $value);
 
         $this->addWithDrafts($builder);
     }
