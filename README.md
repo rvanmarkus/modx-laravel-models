@@ -82,9 +82,5 @@ example:
 Or add this to your composer.json
     "require": {
         "rvanmarkus/modx-laravel-models": "dev-master"
-    }
-
-    
-
-Start using your models with MODX data extending the Rvanmarkus/Modxmodels/ModxContentModel class! 
+    } 
 
