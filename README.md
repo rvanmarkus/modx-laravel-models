@@ -17,18 +17,18 @@ Or add this to your composer.json
 ##Getting started
 To get started, use the Rvanmarkus/Modxmodels/ModxContentModel class to interact with the MODX site content table. There are a multiple ways to do this:
 
- 1. Using the Rvanmarkus/Modxmodels/ModxContentModel class directly
+ ## 1. Using the Rvanmarkus/Modxmodels/ModxContentModel class directly
 
-> example:
     use Rvanmarkus/Modxmodels/ModxContentModel
  
     //query just the content model
     $content = ModxContentModel::where('alias','=','/about-us')->get(); //queries directly modx_site_content table => returns title, content, author, etc  
    
- 2.Using your own model class that specified a MODX template
+ 
+## 2.Using your own model class that specified a MODX template
  Create an new PHP Class and extend the Rvanmarkus/Modxmodels/PageModel. Create a new template in MODX manager and add the new template ID to the model.  
 
-(ex. App/Books.php):
+*(ex. App/Books.php)*
     use Rvanmarkus/Modxmodels/PageModel
 
     class Books extends PageModel{
