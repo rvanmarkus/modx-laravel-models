@@ -24,7 +24,7 @@ Or add this to your composer.json
     $content = ModxContentModel::where('alias','=','/about-us')->get(); //queries directly modx_site_content table => returns title, content, author, etc  
    
  
-### Using your own model class that specified a MODX template
+### Using your own model class that specifies a MODX template ID
  Create a new PHP Class and extend the Rvanmarkus/Modxmodels/PageModel. Create a new template in MODX manager and add the new template ID to the model.  
 
 *(ex. App/Books.php)*
