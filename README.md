@@ -75,20 +75,16 @@ example:
     // returns string value
     
 
-##Install
-add this to your composer.json : 
+##Installation
+
+    $ composer require rvanmarkus/modx-laravel-models
     
-    {
-        "require": {
-            "rvanmarkus/modx-laravel-models": "dev-master"
-        },
-        "repositories": [
-            {
-                "type": "vcs",
-                "url":  "git@github.com:rvanmarkus/modx-laravel-models.git"
-            }
-        ]
+Or add this to your composer.json : 
+    "require": {
+        "rvanmarkus/modx-laravel-models": "dev-master"
     }
+
+    
 
 Start using your models with MODX data extending the Rvanmarkus/Modxmodels/ModxContentModel class! 
 

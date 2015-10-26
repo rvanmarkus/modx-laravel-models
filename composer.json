@@ -1,6 +1,6 @@
 {
     "name": "rvanmarkus/modx-laravel-models",
-    "description": "Build your Laravel Application and retrieve MODX CMS content/data by Eloquent models.",
+    "description": "Build your application / website with help of Laravel and MODX",
     "keywords": [
         "MODX",
         "Eloquent",
