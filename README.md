@@ -24,7 +24,19 @@ If you want to add new models and retrieve the data based on the modx_template, 
 
     //Get your template variables from the templateVariables collection;                    
     $book->templateVariables->get('KeyOfTemplateVar');
+
+
+## Template variables
+You can eager load template variables by adding the 'TemplateVariables' relation (see Eloquent [Eloquent Docs](http://laravel.com/docs/eloquent) for more information)
     
+    $Books::with('templateVariables')
+    
+### The model casts automaticly the values of your template variables to laravel / PHP types. The cast will automaticly been done for the follwing template variables input types:
+  - Date
+  - Text
+  - checkbox (multiple values)
+  - MIGX data
+ 
 ##Install
 add this to your composer.json : 
     
