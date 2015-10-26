@@ -8,7 +8,7 @@ Laravel 5 Eloquent Database models for connecting to ModX PDOx style database. W
 > Just copy all this models in your /app/ directory of your laravel installation
 
 If you want to add new models and retrieve the data based on the modx_template, copy one of the examples (ex. Books.php) and just change the MODX_TEMPLATE constant on top of the model.
-    use Rvanmarkus/ModxModels/PageModel
+    use Rvanmarkus/Modxmodels/PageModel
 
     class Books extends PageModel{
         const MODX_TEMPLATE_ID = 3; // id reference of the MODX (book) template
@@ -27,17 +27,18 @@ If you want to add new models and retrieve the data based on the modx_template, 
     
 ##Install
 add this to your composer.json : 
-	{
- 	   "require": {
-        	"rvanmarkus/modx-laravel-models": "dev-master"
-    	},
-    	"repositories": [
-       		 {
-        	    "type": "vcs",
-            	    "url":  "git@github.com:rvanmarkus/modx-laravel-models.git"
-       	 	}
-   	]
-	}
+    
+    {
+        "require": {
+            "rvanmarkus/modx-laravel-models": "dev-master"
+        },
+        "repositories": [
+            {
+                "type": "vcs",
+                "url":  "git@github.com:rvanmarkus/modx-laravel-models.git"
+            }
+        ]
+    }
 
-Start using your models with MODX data extending the ModxContentModel class! 
+Start using your models with MODX data extending the Rvanmarkus/Modxmodels/ModxContentModel class! 
 
