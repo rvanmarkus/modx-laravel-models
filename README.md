@@ -15,13 +15,25 @@ If you want to add new models and retrieve the data based on the modx_template, 
     //now you can build queries in your controller; example:
    
     $book = Books::where('alias','=','/example-book')
-                    ->with('templateVars');
+                    ->with('templateVariables');
                     ->published()
                     ->sortPublished()
                     ->get();
 
     //Get your template variables from the templateVariables collection;                    
     $book->templateVariables->get('NameOfTemplateVariables');
+    
+    // OR WIHTOUT TEMPLATE ID
+    use Rvanmarkus/Modxmodels/ModxContentModel
+    
+    //query just the page model
+    $content = ModxContentModel::where('alias','=','/about-us');
+   
+    //query content models where alias is'/about-us' and load all related template variables  
+    $content = ModxContentModel::with('templateVariables')
+                ->where('alias','=','/about-us')
+                ->published()
+                ->get();
 
 
 > The ModxContentModel will query all the page data (all columns defined in modx_site_content table), you can make new models with other tables if you want. Or use just MODX pages with different templates IDs.
