@@ -1,18 +1,32 @@
 # Laravel models MODX
 
-Laravel 5 Eloquent Database models for connecting to ModX PDOx style database. We used this models to fetch page data from the *MODX CMS* database. This includes:
+[Laravel](http://laravel.com) 5 Eloquent Database models for connecting to [MODX](http://modx.com) PDOx style database. 
+We've used this models to fetch page data from MODX (mysql) database to our Laravel Application. Almost all of our models extends from this ModxContentModels.
 
-  - Content model to retrieve modx_site_content 
-  - Page model to retrieve data based on Template ID
+This packages has the following models:
 
-If you want to add new models and retrieve the data based on the modx_template, copy one of the examples (ex. Books.php) and just change the MODX_TEMPLATE constant on top of the model.
+  - ModxContentModel to retrieve global page content, and retrieve the related TemplateVariables 
+  - ModxPageModel same as ModxContentModel but can be used to constrain the model to a specific type page ( based on template id)  
+
+> The ModxContentModel will query all the MODX standard page content data (all columns like content, title, alias etc defined in modx_site_content table).
+(don't forget to set the 'use Rvanmarkus/Modxmodels/ModxContentModel' on top of your controller)
+
+example:
+ 
+    //query just the page model
+    $content = ModxContentModel::where('alias','=','/about-us')->get();  
+   
+  
+
+> But you can also make specific models for your domain model and specify the model by a template ID(ex. App/Books.php):
+
     use Rvanmarkus/Modxmodels/PageModel
 
     class Books extends PageModel{
-        const MODX_TEMPLATE_ID = 3; // id reference of the MODX (book) template
+        const MODX_TEMPLATE_ID = 3; // id reference of the MODX (book) template (can be founded in MODX / or database)
     }
     
-    //now you can build queries in your controller; example:
+> now you can build queries in your controller like this:
    
     $book = Books::where('alias','=','/example-book')
                     ->with('templateVariables');
@@ -23,26 +37,23 @@ If you want to add new models and retrieve the data based on the modx_template, 
     //Get your template variables from the templateVariables collection;                    
     $book->templateVariables->get('NameOfTemplateVariables');
     
-    // OR WIHTOUT TEMPLATE ID
-    use Rvanmarkus/Modxmodels/ModxContentModel
-    
-    //query just the page model
-    $content = ModxContentModel::where('alias','=','/about-us');
-   
-    //query content models where alias is'/about-us' and load all related template variables  
-    $content = ModxContentModel::with('templateVariables')
-                ->where('alias','=','/about-us')
-                ->published()
-                ->get();
-
-
-> The ModxContentModel will query all the page data (all columns defined in modx_site_content table), you can make new models with other tables if you want. Or use just MODX pages with different templates IDs.
 
 ## Template variables
  You can eager load template variables by adding the 'TemplateVariables' relation (see Laravel [Eloquent Docs](http://laravel.com/docs/eloquent) for more information)
-    
-    $Books::with('templateVariables')
-    
+
+    use Rvanmarkus/Modxmodels/ModxContentModel
+            
+    //query content models where alias is'/about-us' and load all related template variables  
+    $book = Books::with('templateVariables')
+                ->where('alias','=','/john-doe-the-book')
+                ->published()
+                ->firstOrFail();
+               
+    //for example we have a checkbox TV in MODX called 'Genres'
+     
+    $tv = $book->templateVariables->get('Genres'); //ex. ['Roman','Science Fiction'] returns a array of selected checkbox TV values
+
+
 The model casts automatically the values of your template variables to PHP types. The cast will automatically been done for the following template variables with the types:
   - Date
   - Text
@@ -64,7 +75,6 @@ example:
     // returns string value
     
 
- 
 ##Install
 add this to your composer.json : 
     
