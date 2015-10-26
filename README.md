@@ -41,8 +41,7 @@ example:
 
     $book->templateVariables->get('DateTemplateVariable') 
     // returns Carbon DateTime Object value
-    
-    
+        
     $book->templateVariables->get('MIGXTemplateVariable') 
     // returns PHP Object value
     
