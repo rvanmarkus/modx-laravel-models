@@ -36,10 +36,12 @@ The model casts automaticly the values of your template variables to laravel / P
   - Text
   - checkbox (multiple values)
   - MIGX data
-  
-   
+
+example: 
+
     $book->templateVariables->get('DateTemplateVariable') 
     // returns Carbon DateTime Object value
+    
     
     $book->templateVariables->get('MIGXTemplateVariable') 
     // returns PHP Object value
