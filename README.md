@@ -79,7 +79,7 @@ example:
 
     $ composer require rvanmarkus/modx-laravel-models
     
-Or add this to your composer.json : 
+Or add this to your composer.json
     "require": {
         "rvanmarkus/modx-laravel-models": "dev-master"
     }
