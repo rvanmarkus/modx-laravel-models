@@ -1,33 +1,40 @@
 # Laravel models MODX
 
-[Laravel](http://laravel.com) 5 Eloquent Database models for connecting to [MODX](http://modx.com) PDOx style database. 
-We've used this models to fetch page data from MODX (mysql) database to our Laravel Application. Almost all of our models extends from this ModxContentModels.
+[Laravel](http://laravel.com) 5 Eloquent Database models to work with [MODX](http://modx.com) database.
 
-This packages has the following models:
+> This package helps you building Laravel applications that interacts with MODX. Use all the beatiful features of Laravel and ease of use of MODX. 
 
-  - ModxContentModel to retrieve global page content, and retrieve the related TemplateVariables 
-  - ModxPageModel same as ModxContentModel but can be used to constrain the model to a specific type page ( based on template id)  
+##Installation
 
-> The ModxContentModel will query all the MODX standard page content data (all columns like content, title, alias etc defined in modx_site_content table).
-(don't forget to set the 'use Rvanmarkus/Modxmodels/ModxContentModel' on top of your controller)
+    $ composer require rvanmarkus/modx-laravel-models
 
-example:
+Or add this to your composer.json
+
+    "require": {
+        "rvanmarkus/modx-laravel-models": "dev-master"
+    }
+
+##Getting started
+To get started, use the Rvanmarkus/Modxmodels/ModxContentModel class to interact with the MODX site content table. There are a multiple ways to do this:
+
+ 1. Using the Rvanmarkus/Modxmodels/ModxContentModel class directly
+
+> example:
+    use Rvanmarkus/Modxmodels/ModxContentModel
  
-    //query just the page model
-    $content = ModxContentModel::where('alias','=','/about-us')->get();  
+    //query just the content model
+    $content = ModxContentModel::where('alias','=','/about-us')->get(); //queries directly modx_site_content table => returns title, content, author, etc  
    
-  
+ 2.Using your own model class that specified a MODX template
+ Create an new PHP Class and extend the Rvanmarkus/Modxmodels/PageModel. Create a new template in MODX manager and add the new template ID to the model.  
 
-> But you can also make specific models for your domain model and specify the model by a template ID(ex. App/Books.php):
-
+(ex. App/Books.php):
     use Rvanmarkus/Modxmodels/PageModel
 
     class Books extends PageModel{
-        const MODX_TEMPLATE_ID = 3; // id reference of the MODX (book) template (can be founded in MODX / or database)
+        const MODX_TEMPLATE_ID = 3; // id reference of the MODX (book) template (can be founded in MODX manager / or database)
     }
     
-> now you can build queries in your controller like this:
-   
     $book = Books::where('alias','=','/example-book')
                     ->with('templateVariables');
                     ->published()
@@ -37,7 +44,6 @@ example:
     //Get your template variables from the templateVariables collection;                    
     $book->templateVariables->get('NameOfTemplateVariables');
     
-
 ## Template variables
  You can eager load template variables by adding the 'TemplateVariables' relation (see Laravel [Eloquent Docs](http://laravel.com/docs/eloquent) for more information)
 
@@ -74,13 +80,3 @@ example:
     $book->templateVariables->get('TextTemplateVariable') 
     // returns string value
     
-
-##Installation
-
-    $ composer require rvanmarkus/modx-laravel-models
-    
-Or add this to your composer.json
-    "require": {
-        "rvanmarkus/modx-laravel-models": "dev-master"
-    } 
-
