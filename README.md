@@ -43,7 +43,7 @@ Or add this to your composer.json
     //Get your template variables from the templateVariables collection;                    
     $book->templateVariables->get('NameOfTemplateVariables');
    
-### 3. Using your own model classes and scopes  
+### Using your own model classes and scopes  
 If you don't want a model that is specified by a template, create a model that extends the Rvanmarkus/Modxmodels/ModxContentModel class directly without the PageModel class. This class will query all the modx_site_content data by default, according the scopes you add. See the Eloquent documentation for more information.
 
  
