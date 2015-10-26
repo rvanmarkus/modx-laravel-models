@@ -1,4 +1,4 @@
-# Laravel models MODX
+# MODX Laravel models 
 
 [Laravel](http://laravel.com) 5 Eloquent Database models to interact with [MODX](http://modx.com) database.
 
@@ -16,12 +16,14 @@ Or add this to your composer.json
 
 ##Getting started
 
+Connect your laravel application to the same database as MODX, and use the same encoding settings. *(app/config/database.php)*
+
 ### Using the Rvanmarkus/Modxmodels/ModxContentModel class directly
 
     use Rvanmarkus/Modxmodels/ModxContentModel
- 
-    //query just the content model
-    $content = ModxContentModel::where('alias','=','/about-us')->get(); //queries directly modx_site_content table => returns title, content, author, etc  
+     
+    //queries directly modx_site_content table => returns title, content, author, etc 
+    $content = ModxContentModel::where('alias','=','/about-us')->get();   
    
  
 ### Using your own model class that specifies a MODX template ID
