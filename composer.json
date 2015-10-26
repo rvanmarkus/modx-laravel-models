@@ -1,11 +1,11 @@
 {
-    "name": "rvanmarkus/modxmodels",
+    "name": "rvanmarkus/modx-laravel-models",
     "description": "Modx Models using Eloquent",
     "keywords": [
         "league",
         ":package_name"
     ],
-    "homepage": "https://github.com/thephprvanmarkus/modxmodels",
+    "homepage": "https://github.com/rvanmarkus/modx-laravel-models",
     "license": "MIT",
     "authors": [
         {
