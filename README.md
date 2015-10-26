@@ -5,8 +5,6 @@ Laravel 5 Eloquent Database models for connecting to ModX PDOx style database. W
   - Content model to retrieve modx_site_content 
   - Page model to retrieve data based on Template ID
 
-> Just copy all this models in your /app/ directory of your laravel installation
-
 If you want to add new models and retrieve the data based on the modx_template, copy one of the examples (ex. Books.php) and just change the MODX_TEMPLATE constant on top of the model.
     use Rvanmarkus/Modxmodels/PageModel
 
@@ -26,12 +24,14 @@ If you want to add new models and retrieve the data based on the modx_template, 
     $book->templateVariables->get('NameOfTemplateVariables');
 
 
+> The ModxContentModel will query all the page data (all columns defined in modx_site_content table), you can make new models with other tables if you want. Or use just MODX pages with different templates IDs.
+
 ## Template variables
-You can eager load template variables by adding the 'TemplateVariables' relation (see Laravel [Eloquent Docs](http://laravel.com/docs/eloquent) for more information)
+ You can eager load template variables by adding the 'TemplateVariables' relation (see Laravel [Eloquent Docs](http://laravel.com/docs/eloquent) for more information)
     
     $Books::with('templateVariables')
     
-The model casts automaticly the values of your template variables to laravel / PHP types. The cast will automaticly been done for the follwing template variables input types:
+The model casts automatically the values of your template variables to PHP types. The cast will automatically been done for the following template variables with the types:
   - Date
   - Text
   - checkbox (multiple values)
