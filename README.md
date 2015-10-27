@@ -20,7 +20,7 @@ Connect your laravel application to the same database as MODX, and use the same 
 
 ### Using the Rvanmarkus/Modxmodels/ModxContentModel class directly
 
-    use Rvanmarkus/Modxmodels/ModxContentModel
+    use Rvanmarkus\Modxmodels\ModxContentModel
      
     //queries directly modx_site_content table => returns title, content, author, etc 
     $content = ModxContentModel::where('alias','=','/about-us')->get();   
@@ -30,9 +30,10 @@ Connect your laravel application to the same database as MODX, and use the same 
  Create a new PHP Class and extend the Rvanmarkus/Modxmodels/PageModel. Create a new template in MODX manager and add the new template ID to the model.  
 
 *(ex. App/Books.php)*
-    use Rvanmarkus/Modxmodels/PageModel
 
-    class Books extends PageModel{
+    use Rvanmarkus\Modxmodels\ModxPageModel
+
+    class Books extends ModxPageModel{
         const MODX_TEMPLATE_ID = 3; // id reference of the MODX (book) template (can be founded in MODX manager / or database)
     }
     
