@@ -32,15 +32,15 @@ class ModxContentModel extends Model {
 
     }
 
-    public function scopeMenuindex($query){
+    public function scopeMenuindex($query, $sort = 'asc'){
 
-        return $query->orderBy('menuindex', 'asc');
+        return $query->orderBy('menuindex', $sort);
 
     }
 
-    public function scopeSortPublished($query){
+    public function scopeSortPublished($query, $sort = 'desc'){
 
-        return $query->orderBy('publishedon','desc');
+        return $query->orderBy('publishedon', $sort);
 
     }
 
