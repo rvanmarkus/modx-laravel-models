@@ -2,7 +2,7 @@
 
 [Laravel](http://laravel.com) 5 Eloquent Database models to interact with [MODX](http://modx.com) database.
 
-> This package helps you building Laravel applications that queries MODX pages/content and template variables. Use all the modern and beautiful features of the Laravel framework and give your users the ease of the MODX CMS.
+> This package helps you build Laravel applications that queries MODX pages/content and template variables. Use all the modern and beautiful features of the Laravel framework and give your users the ease of the MODX CMS.
 
 ## Installation
 
@@ -66,7 +66,9 @@ If you don't want a model that is specified by a template, create a model that e
     $tv = $book->templateVariables->get('Genres'); //ex. ['Roman','Science Fiction'] returns a array of selected checkbox TV values
 
 
-The model casts automatically the values of your template variables to PHP types. The cast will automatically been done for the following template variables with the types:
+The model automatically casts certain values of your template variables to Objects. 
+The following template variable types will be automatically casted:
+
   - Date
   - Text
   - checkbox (multiple values)
